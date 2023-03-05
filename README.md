@@ -2,73 +2,62 @@
 
 ## Giriş
 
-Bu proje, ağ oluşturmayı keşfetmenize olanak tanıyan genel bir uygulama alıştırmasıdır.
-Küçük ölçekli ağları yapılandırmanız gerekecek. Bunu yapmak için, bu kavramları anlamak gerekli olacaktır.
+Bu proje, ağ oluşturmayı keşfetmemize olanak tanıyan genel bir alıştırmadır.
+Küçük ölçekli ağları yapılandırmamız gerekecek. Bunu yapmak için, aşağıdaki önemli kavramlara hakim olmak gereklidir.
 
-*  [Important concepts](#important-concepts)
-    *    [TCP](#tcp)  
-    *    [IP address](#ip-address)
-    *    [TCP/IP model](#tcp/ip-model)
-    *    [Subnet mask](#subnet-mask)
-    *    [Switch](#switch)
-    *    [Router](#router)
+### ÖNEMLİ KAVRAMLAR
+   
+<details>
+   <summary>TCP/IP'nin Özellikleri</summary>
 
-## Önemli Kavramlar
-
-### TCP
-
-   <br>
-      <img src="https://github.com/K-zew/Netpractice/blob/main/Imgs/tcp-vs-udp-communications.png?raw=true" alt="TCP">
-   <br>
-
-### TCP/IP'nin Özellikleri
 
 TCP, İletim Kontrol Protokolü anlamına gelir . Uygulama programlarının ve cihazların bir ağ üzerinden mesaj alışverişi yapmasını sağlayan bir iletişim standardıdır. İnternet üzerinden paket göndermek için kullanılır.
 
-TCP, bir ağ üzerinden iletilen verilerin bütünlüğünü garanti eder. Verileri iletmeden önce, TCP bir kaynak ile hedefi arasında iletişim başlayana kadar aktif kalan bir bağlantı kurar. Ardından, herhangi bir veri kaybı olmadan uçtan uca teslimatı sağlarken, büyük miktarda veriyi daha küçük paketlere böler.
+   TCP, bir ağ üzerinden iletilen verilerin bütünlüğünü garanti eder. Verileri iletmeden önce, bir kaynak ile hedefi arasında iletişim başlayana kadar aktif kalan bir bağlantı kurar. Ardından, herhangi bir veri kaybı olmadan uçtan uca teslimatı sağlarken, büyük miktarda veriyi daha küçük paketlere böler.
 
-1. Segment Numaralandırma Sistemi
-* TCP, iletilen veya alınan bölümlerin her birine tek tek numaralar atayarak kaydını tutar
-* Segmentlere sıra numaraları atanırken, aktarılacak veri baytlarına belirli bir Bayt Numarası atanır
-* Alınan segmentlere Onay Numaraları atanır
-2. Akış Kontrolü
-* Akış kontrolü, bir gönderenin verileri aktarma hızını sınırlar
-* Bu, güvenilir teslimatı sağlamak için yapılır
-* Alıcı, göndericiye sürekli olarak ne kadar veri alınabileceği konusunda ipucu verir (kayan bir pencere kullanarak)
-3. Hata Kontrolü
-* TCP, güvenilir veri aktarımı için bir hata kontrol mekanizması uygular
-* Hata kontrolü bayt yönelimlidir
-* Segmentler hata tespiti için kontrol edilir
-Hata Kontrolü şunları içerir – Bozuk Segment ve Kayıp Segment Yönetimi, Sıra dışı segmentler, Yinelenen segmentler vb.
-4. Tıkanıklık Kontrolü
-* TCP, ağdaki tıkanıklık düzeyini hesaba katar
-* Tıkanıklık düzeyi, bir gönderici tarafından gönderilen veri miktarına göre belirlenir
+   1. Segment Numaralandırma Sistemi
+      * TCP, iletilen veya alınan bölümlerin her birine tek tek numaralar atayarak kaydını tutar
+      * Segmentlere sıra numaraları atanırken, aktarılacak veri baytlarına belirli bir Bayt Numarası atanır
+      * Alınan segmentlere Onay Numaraları atanır
+   2. Akış Kontrolü
+      * Akış kontrolü, bir gönderenin verileri aktarma hızını sınırlar
+      * Bu, güvenilir teslimatı sağlamak için yapılır
+      * Alıcı, göndericiye sürekli olarak ne kadar veri alınabileceği konusunda ipucu verir (kayan bir pencere kullanarak)
+   3. Hata Kontrolü
+      * TCP, güvenilir veri aktarımı için bir hata kontrol mekanizması uygular
+      * Hata kontrolü bayt yönelimlidir
+      * Segmentler hata tespiti için kontrol edilir
+   Hata Kontrolü şunları içerir – Bozuk Segment ve Kayıp Segment Yönetimi, Sıra dışı segmentler, Yinelenen segmentler vb.
+   4. Tıkanıklık Kontrolü
+      * TCP, ağdaki tıkanıklık düzeyini hesaba katar
+      * Tıkanıklık düzeyi, bir gönderici tarafından gönderilen veri miktarına göre belirlenir
 
-#### Avantajlar
-* Güvenilir bir protokoldür.
-Bir hata kontrol mekanizması ve kurtarma için bir mekanizma sağlar.
-Akış kontrolü sağlar.
-Verilerin tam olarak gönderildiği sırayla uygun hedefe ulaşmasını sağlar.
-Herhangi bir kuruluşa veya kişiye ait olmayan Açık Protokol.
-Ağdaki her bilgisayara bir IP adresi ve her siteye bir alan adı atar, böylece her cihaz sitesinin ağ üzerinden ayırt edilebilir olmasını sağlar.
+   #### Avantajlar
+   * Güvenilir bir protokoldür.
+   Bir hata kontrol mekanizması ve kurtarma için bir mekanizma sağlar.
+   Akış kontrolü sağlar.
+   Verilerin tam olarak gönderildiği sırayla uygun hedefe ulaşmasını sağlar.
+   Herhangi bir kuruluşa veya kişiye ait olmayan Açık Protokol.
+   Ağdaki her bilgisayara bir IP adresi ve her siteye bir alan adı atar, böylece her cihaz sitesinin ağ üzerinden ayırt edilebilir olmasını sağlar.
 
-#### Dezavantajları
-* TCP, Geniş Alan Ağları için yapılmıştır, bu nedenle boyutu, düşük kaynaklara sahip küçük ağlar için sorun olabilir.
-TCP, ağın hızını yavaşlatmak için birkaç katman çalıştırır.
-Doğası gereği jenerik değildir. Yani, TCP/IP paketi dışında herhangi bir protokol yığınını temsil edemez. Örneğin, bir Bluetooth bağlantısı ile çalışamaz.
-Yaklaşık 30 yıl önce geliştirilmelerinden bu yana herhangi bir değişiklik yapılmadı.
+   #### Dezavantajları
+   * TCP, Geniş Alan Ağları için yapılmıştır, bu nedenle boyutu, düşük kaynaklara sahip küçük ağlar için sorun olabilir.
+   TCP, ağın hızını yavaşlatmak için birkaç katman çalıştırır.
+   Doğası gereği jenerik değildir. Yani, TCP/IP paketi dışında herhangi bir protokol yığınını temsil edemez. Örneğin, bir Bluetooth bağlantısı ile çalışamaz.
+   Yaklaşık 30 yıl önce geliştirilmelerinden bu yana herhangi bir değişiklik yapılmadı.
 
-NASIL veri gönderilir:
-TCP protokolünde bildiğimiz gibi ilk defa hedefe bir paket göndermeye çalışır ve bağlantının canlı kalmasını sağlayarak paketin iyi alınıp alınmadığını kontrol eder. Her seferinde gönderilecek bir paket ekler, yani daha önce gönderilen paketlerin iki katını ikinci kez gönderir ve bağlantının iyi durumda olup olmadığını kontrol eder. Üçüncü kez, bu bağlantıda bir sorun oluşana kadar önceki paket sayısının iki katını ekler. Bu anda, verilerin uçtan uca veri iletimi için bu bağlantıyı sürdürmek, verici hızını artırmak ve doğruluğu korumak için gönderilen önceki paket sayısını geri alır. Bu süreci basit bir matematiksel formülle açıklayabiliriz: `2^(n)`. Burada n, paketin bu bağlantıda doğru şekilde gönderilme sayısıdır.
+   NASIL veri gönderilir:
+   TCP protokolünde bildiğimiz gibi ilk defa hedefe bir paket göndermeye çalışır ve bağlantının canlı kalmasını sağlayarak paketin iyi alınıp alınmadığını kontrol eder. Her seferinde gönderilecek bir paket ekler, yani daha önce gönderilen paketlerin iki katını ikinci kez gönderir ve bağlantının iyi durumda olup olmadığını kontrol eder. Üçüncü kez, bu bağlantıda bir sorun oluşana kadar önceki paket sayısının iki katını ekler. Bu anda, verilerin uçtan uca veri iletimi için bu bağlantıyı sürdürmek, verici hızını artırmak ve doğruluğu korumak için gönderilen önceki paket sayısını geri alır. Bu süreci basit bir matematiksel formülle açıklayabiliriz: `2^(n)`. Burada n, paketin bu bağlantıda doğru şekilde gönderilme sayısıdır.
 
-Sonuç olarak, veri iletmesi gereken üst düzey protokollerin tümü TCP Protokolünü kullanır. Örnekler, Dosya Aktarım Protokolü (FTP), Güvenli Kabuk (SSH) gibi eşler arası paylaşım yöntemlerini içerir...
+   Sonuç olarak, veri iletmesi gereken üst düzey protokollerin tümü TCP Protokolünü kullanır. Örnekler, Dosya Aktarım Protokolü (FTP), Güvenli Kabuk (SSH) gibi eşler arası paylaşım yöntemlerini içerir...
 
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
+   <div align="right">
+     <b><a href="#top">↥ back to top</a></b>
+   </div>
+   </details>
 
-### IP Address
-
+<details>
+   <summary>IP Address</summary>
    <br>
       <p align="center">
          <img src="https://github.com/K-zew/Netpractice/blob/main/Imgs/IP_addressing.jpeg?raw=true" alt="IP">
@@ -80,22 +69,6 @@ IP, iletim kontrol protokolünü de içeren bir internet protokol paketinin par�
 IP adresleme, bir ağdaki cihazlara adres atamanın mantıksal bir yoludur. İnternete bağlı her cihaz benzersiz bir IP adresi gerektirir.
 
 Bir IP adresinin iki bölümü vardır; bir kısım bilgisayar veya başka bir cihaz gibi ana bilgisayarı tanımlar ve diğer kısım ait olduğu ağı tanımlar. TCP/IP, bunları ayırmak için bir [alt ağ maskesi](#alt ağ maskesi) kullanır.
-
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
-
-### TCP/IP modeli
-
-   <br>
-      <img src="https://github.com/K-zew/Netpractice/blob/main/Imgs/tcp_ip_model.png?raw=true" alt="tcp_ip_model">
-   </br>
-   
-   * Explained :
-   
-   <br>
-      <img src="https://github.com/K-zew/Netpractice/blob/main/Imgs/tcp_ip.png?raw=true" alt="tcp_ip">
-   </br>
 
 <div align="right">
   <b><a href="#top">↥ back to top</a></b>
@@ -127,8 +100,10 @@ Bir ağ internete bağlandığında, ayrılmış özel IP adreslerinden bir IP a
 <div align="right">
   <b><a href="#top">↥ back to top</a></b>
 </div>
+</details>
 
-# Subnet Mask
+<details>
+   <summary>Subnet Mask</summary>
 
    <br>
       <p align="center">
@@ -189,14 +164,15 @@ Bu nedenle, yukarıdaki "255.255.255.128" örneğindeki maske, 32 bitin 25 biti 
 <div align="right">
   <b><a href="#top">↥ back to top</a></b>
 </div>
+</details>
 
-### Switch
-
+<details>
+   <summary>Switch</summary>
    <br>
       <p align="left">
          <img src="https://github.com/K-zew/Netpractice/blob/main/Imgs/switch real.webp?raw=true" alt="switch">
       </p>
-      <p align="right">
+      <p align="left">
          <img src="https://github.com/K-zew/Netpractice/blob/main/Imgs/switch.webp?raw=true" alt="switch">
       </p>
    <br>
@@ -206,14 +182,10 @@ Anahtar, birden çok cihazı tek bir ağda birbirine bağlar. Bir yönlendiricid
 <div align="right">
   <b><a href="#top">↥ back to top</a></b>
 </div>
+</details>
 
-### Router
-
-   <br>
-      <p align="left">
-         <img src="https://github.com/K-zew/Netpractice/blob/main/Imgs/router.jpg?raw=true" alt="router">
-      </p>
-   <br>
+<details>
+   <summary>Router</summary>
 
 Anahtarın birden çok cihazı tek bir ağ üzerinde birbirine bağlaması gibi, yönlendirici de birden çok ağı birbirine bağlar. Yönlendiricinin bağlandığı her ağ için bir arabirimi vardır.
 
@@ -243,8 +215,13 @@ Sonraki atlama: Sonraki atlama, bir paketin geçebileceği bir sonraki en yakın
 <div align="right">
   <b><a href="#top">↥ back to top</a></b>
 </div>
+</details>
 
-## Levels
+
+### Proje tamamlama aşamaları
+
+<details>
+<summary>Levels</summary>
 
 <details>
  <summary>Level 1</summary>
